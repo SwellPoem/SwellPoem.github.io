@@ -1,6 +1,4 @@
-// import { GLTFLoader } from "../three/examples/jsm/loaders/GLTFLoader.js";
 import { GLTFLoader } from "GLTFLoader";
-// import { DRACOLoader } from "../three/examples/jsm/loaders/DRACOLoader.js";
 import { DRACOLoader } from "DRACOLoader";
 import assets from "../../script/utils/assets.js";
 import World from "../world.js";
