@@ -63,7 +63,7 @@ export default class Loader { // load every assets for the scene then initialize
     }
 
     loadGltf = (asset) => { // load gltf model (the scene)
-        this.loader.load('/my_scene.glb', file => {
+        this.loader.load('/public/assets/3d/my_scene.glb', file => {
             file["objects"] = {}; // add objects to be acceded by . instead of search from array
             file.scene.traverse((node) => {
                 // add shadow to object
