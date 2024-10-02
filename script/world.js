@@ -1,6 +1,6 @@
 import { InteractionManager } from 'threeInteractive';
-import Environment from 'script/utils/environment.js';
-import Resizer from "script/utils/resize.js";
+import Environment from '../script/utils/environment.js';
+import Resizer from "../script/utils/resize.js";
 
 const animations = {};
 const interactions = [];

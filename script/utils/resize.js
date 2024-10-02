@@ -1,4 +1,4 @@
-import { controls } from "script/index.js";
+import { controls } from "../index.js";
 
 export default class Resizer { // set render and camera size / aspect ratio to be 100% of available and update it when necessary
     constructor(renderer, camera) {

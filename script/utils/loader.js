@@ -2,8 +2,8 @@
 import { GLTFLoader } from "GLTFLoader";
 // import { DRACOLoader } from "../three/examples/jsm/loaders/DRACOLoader.js";
 import { DRACOLoader } from "DRACOLoader";
-import assets from "script/utils/assets.js";
-import World from "script/world.js";
+import assets from "../../script/utils/assets.js";
+import World from "../world.js";
 
 export default class Loader { // load every assets for the scene then initialize world
     constructor(loadOverlay) {
