@@ -76,7 +76,7 @@ export default class Loader { // load every assets for the scene then initialize
     //     });
     // }
 
-    loadFltf = (asset) => { // load gltf model (the scene)
+    loadGltf = (asset) => { // load gltf model (the scene)
         const loader = new THREE.GLTFLoader();
     
         loader.load('/my_scene.glb', (gltf) => {
