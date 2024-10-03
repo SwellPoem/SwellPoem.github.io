@@ -76,25 +76,6 @@ export default class Loader { // load every assets for the scene then initialize
         });
     }
 
-    // loadGltf = (asset) => { // load gltf model (the scene)
-    //     const loader = new THREE.GLTFLoader();
-    
-    //     loader.load('/my_scene.glb', (gltf) => {
-    //         gltf.scene.traverse((node) => {
-    //             // add shadow to object
-    //             node.castShadow = true;
-    //             node.receiveShadow = true;
-    
-    //             // add objects to be accessed by . instead of search from array
-    //             gltf.objects = gltf.objects || {};
-    //             gltf.objects[node.name] = node;
-    //         });
-    
-    //         scene.add(gltf.scene);
-    //         this.oneLoaded(asset.name, gltf);
-    //     });
-    // }
-
     loadAudio = (asset) => { // basic load audio
         const audio = new Audio(asset.path);
         this.oneLoaded(asset.name, {
