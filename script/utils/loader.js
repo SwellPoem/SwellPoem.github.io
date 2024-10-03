@@ -79,7 +79,7 @@ export default class Loader { // load every assets for the scene then initialize
     loadFltf = (asset) => { // load gltf model (the scene)
         const loader = new THREE.GLTFLoader();
     
-        loader.load('public/my_scene.glb', (gltf) => {
+        loader.load('/my_scene.glb', (gltf) => {
             gltf.scene.traverse((node) => {
                 // add shadow to object
                 node.castShadow = true;
