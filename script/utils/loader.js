@@ -62,38 +62,38 @@ export default class Loader { // load every assets for the scene then initialize
         }
     }
 
-    // loadGltf = (asset) => { // load gltf model (the scene)
-    //     this.loader.load('../../public/my_scene.glb', file => {
-    //         file["objects"] = {}; // add objects to be acceded by . instead of search from array
-    //         file.scene.traverse((node) => {
-    //             // add shadow to object
-    //             node.castShadow = true;
-    //             node.receiveShadow = true;
-                
-    //             file.objects[node.name] = node;
-    //         })
-    //         this.oneLoaded(asset.name, file);
-    //     });
-    // }
-
     loadGltf = (asset) => { // load gltf model (the scene)
-        const loader = new THREE.GLTFLoader();
-    
-        loader.load('/my_scene.glb', (gltf) => {
-            gltf.scene.traverse((node) => {
+        this.loader.load('../../public/my_scene2.glb', file => {
+            file["objects"] = {}; // add objects to be acceded by . instead of search from array
+            file.scene.traverse((node) => {
                 // add shadow to object
                 node.castShadow = true;
                 node.receiveShadow = true;
-    
-                // add objects to be accessed by . instead of search from array
-                gltf.objects = gltf.objects || {};
-                gltf.objects[node.name] = node;
-            });
-    
-            scene.add(gltf.scene);
-            this.oneLoaded(asset.name, gltf);
+                
+                file.objects[node.name] = node;
+            })
+            this.oneLoaded(asset.name, file);
         });
     }
+
+    // loadGltf = (asset) => { // load gltf model (the scene)
+    //     const loader = new THREE.GLTFLoader();
+    
+    //     loader.load('/my_scene.glb', (gltf) => {
+    //         gltf.scene.traverse((node) => {
+    //             // add shadow to object
+    //             node.castShadow = true;
+    //             node.receiveShadow = true;
+    
+    //             // add objects to be accessed by . instead of search from array
+    //             gltf.objects = gltf.objects || {};
+    //             gltf.objects[node.name] = node;
+    //         });
+    
+    //         scene.add(gltf.scene);
+    //         this.oneLoaded(asset.name, gltf);
+    //     });
+    // }
 
     loadAudio = (asset) => { // basic load audio
         const audio = new Audio(asset.path);
