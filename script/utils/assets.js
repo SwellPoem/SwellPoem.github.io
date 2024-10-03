@@ -2,7 +2,7 @@ export default [
     {
         type: "gltf",
         name: "room",
-        path: "../public/assets/3d/my_scene.glb"
+        path: "../public/my_scene.glb"
     },
     {
         type: "videoTexture",
