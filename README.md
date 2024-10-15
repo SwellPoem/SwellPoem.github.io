@@ -26,4 +26,6 @@ git lfs pull
 ```
 then start a local server in order to visualize the portfolio.
 
-No link for now...
+If is not working, go to this [link](https://drive.google.com/drive/folders/11aAUNwSz5E1Y24tzL27V2xdyXVFV46lw?usp=sharing), download the ```.glb``` file and substitute the one already present in the public folder, then start a local server in order to visulize the portfolio.
+
+No link for now 🥲...
