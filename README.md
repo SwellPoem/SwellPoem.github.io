@@ -15,8 +15,10 @@ The user can interact with some elements presents by clicking.
 
 ### Setup and Usage
 
-Clone the repo. 
-If you have git lfs on you computer open a terminal in the repo's folder and write
+Clone the repo.
+If you don't have git lfs installed on your computer follow this [tutorial](https://docs.github.com/en/repositories/working-with-files/managing-large-files/installing-git-large-file-storage).
+
+Once you have git lfs on you computer open a terminal in the repo's folder and write
 ```code
 git lfs install
 ```
