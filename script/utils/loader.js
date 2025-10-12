@@ -1,6 +1,6 @@
 import { GLTFLoader } from "GLTFLoader";
 import { DRACOLoader } from "DRACOLoader";
-import assets from "../../script/utils/assets.js";
+import assets from "./utils/assets.js";
 import World from "../world.js";
 
 export default class Loader { // load every assets for the scene then initialize world
