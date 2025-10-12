@@ -7,16 +7,15 @@ let progress = document.querySelector(".caroussel .progress");
 export class Form {
     constructor() {
         this.inputs = [];
-        this.mailRule = /^[a-z][-._a-z0-9]*@[a-z0-9][-.a-z0-9]+\.[a-z]{2,}$/i; // mail must: start with letter after wich can be every letter number and -._ 
-        //then @ and then domain with about same rule as mail name start with letter or number; no underscore then must avec . followed by extension (only letter with 2 or more character)
-        this.basicRules = /^.{1,60}$/; // firstName, lastName, adress and city can more or less be anything depending on the country
-        this.messageRule = /^.{10,500}$/; // message can also be anything only rule is preventing too short or long messages
+        this.mailRule = /^[a-z][-._a-z0-9]*@[a-z0-9][-.a-z0-9]+\.[a-z]{2,}$/i;
+        this.basicRules = /^.{1,60}$/;
+        this.messageRule = /^.{10,500}$/;
 
-        formElems.forEach(elem => { // go through All form input
-            elem["originalPlaceholder"] = elem.getAttribute("placeholder"); // keep original placeholder to put it back if success
-            const err = elem.getAttribute("data-err"); // get and store errore message
-            let regex = this.basicRules; // regex wanted for specific input
-            switch (elem.name) { // if input is recognized change the regex to one specific to it
+        formElems.forEach(elem => { 
+            elem["originalPlaceholder"] = elem.getAttribute("placeholder");
+            const err = elem.getAttribute("data-err");
+            let regex = this.basicRules;
+            switch (elem.name) {
                 case "e-mail":
                     regex = this.mailRule;
                     break;
@@ -24,7 +23,7 @@ export class Form {
                     regex = this.messageRule;
                     break;
             }
-            this.inputs.push({ // store infos
+            this.inputs.push({ 
                 elem,
                 regex,
                 err
@@ -33,12 +32,12 @@ export class Form {
         })
     }
 
-    submitForm = () => { // check if all form is good before "submiting"
+    submitForm = () => { 
         let error = false;
-        this.inputs.forEach(input => { // check all input
+        this.inputs.forEach(input => { 
             if (!this.check(input.regex, input.elem, input.err)) error = true;
         })
-        if (error) { // if one or more error alert it
+        if (error) { 
             displayPopup("fail", ":/ At least one wrong entry");
             return;
         }
@@ -68,9 +67,9 @@ export class Form {
 
 export class Caroussel {
     constructor() {
-        this.container = carousselContainer; // to be abble to acces from resize.js
-        this.slides = slides; // to be abble to acces from index.js
-        slides.forEach((e, i) => { // add dot depending on slide number
+        this.container = carousselContainer; 
+        this.slides = slides; 
+        slides.forEach((e, i) => { 
             const dot = document.createElement("div");
             dot.className = "dot";
             progress.appendChild(dot);
@@ -120,36 +119,28 @@ export class Caroussel {
             if (document.querySelector(".caroussel .text:hover")) return;
             this.changeSlide(1);
         }, 6000);
-        autoDefil.setAttribute("data-state", "play"); // change datastate of play/pause container to update CSS
+        autoDefil.setAttribute("data-state", "play");
     }
 
     pause = () => {
         if (!this.autoSlideInterval) return;
         clearInterval(this.autoSlideInterval);
         this.autoSlideInterval = false;
-        autoDefil.setAttribute("data-state", "pause"); // change datastate of play/pause container to update CSS
+        autoDefil.setAttribute("data-state", "pause"); 
     }
 
-    // open = () => { // handle everything necessary on oppening of caroussel modal
-    //     slides[this.actualSlide].querySelector("video").play();
-    //     this.opened = true;
-    // }
-    open = () => { // handle everything necessary on opening of carousel modal
+    open = () => { // handle everything necessary on opening of carousel mode
         const element = slides[this.actualSlide].querySelector("video, img");
         if (element.tagName.toLowerCase() === 'video') {
             element.play();
         }
         this.opened = true;
     }
-
-    // close = () => {
-    //     this.slides[this.actualSlide].querySelector("video").pause(); // pause video to save perfs
-    //     this.opened = false;
-    // }
+    
     close = () => {
         const element = this.slides[this.actualSlide].querySelector("video, img");
         if (element.tagName.toLowerCase() === 'video') {
-            element.pause(); // pause video to save perfs
+            element.pause();
         }
         this.opened = false;
     }
