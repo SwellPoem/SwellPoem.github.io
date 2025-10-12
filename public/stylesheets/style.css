@@ -1,0 +1,674 @@
+@font-face { /* title */
+  font-family: "Digital geometric";
+  src: url("../public/assets/fonts/digital-geometric.otf");
+}
+@font-face { /* text */
+  font-family: "Varela Round";
+  src: url("../public/assets/fonts/VarelaRound-Regular.ttf");
+}
+:root { /* color variable are rgb values -- like that so I can play with opacity */
+  --green: 176, 215, 181;
+  --beige: 223, 219, 212;
+  --text: 30, 30, 30;
+  --white: 232, 231, 225 ;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  RESET CSS                                 */
+/* -------------------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  color: inherit;
+  vertical-align: baseline;
+  line-height: 1;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+textarea {
+  resize: none;
+}
+
+a {
+  color: unset;
+  text-decoration: none;
+}
+
+button {
+  background: unset;
+  border: none;
+  cursor: pointer;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   GENERAL                                  */
+/* -------------------------------------------------------------------------- */
+html {
+  background-color: rgb(var(--white)); /* on iphone withe notch, landscape view dosen't take the whole width to avoid cropping important content, so to make it a bit more natural, apply the same color as ground to html so the white space are less visible */
+}
+
+body {
+  font-family: "Varela Round";
+  color: rgb(var(--text));
+}
+
+.h1 {
+  font-family: "Digital geometric";
+  font-size: 3rem;
+}
+.h1.smaller {
+  font-size: 2rem;
+}
+
+.h2 {
+  font-size: 2rem;
+}
+
+.h3 {
+  font-size: 1.5rem;
+}
+
+.modal {
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+  overflow: hidden;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(var(--beige), 0.5);
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+}
+
+.modal-active {
+  z-index: 10;
+  pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+}
+.modal-active .close-modal {
+  position: fixed;
+  top: 0.5em;
+  left: 0.5em;
+  font-size: 1.5rem;
+}
+
+.hidden { /* for all element that need to be present in dom but invisible for accessibility */
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  -webkit-clip-path: inset(50%);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
+.popup {
+  position: fixed;
+  z-index: 10;
+  top: -10vh;
+  opacity: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1em;
+  background-color: rgb(var(--beige));
+  font-size: 1.5rem;
+  border-radius: 0.5em;
+  box-shadow: 2px 2px 3px rgba(30, 30, 30, 0.5);
+  transition: 200ms top ease-out 200ms opacity ease-out;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.popup.active {
+  top: 10vh;
+  opacity: 1;
+}
+.popup.fail {
+  border: solid 2px red;
+}
+.popup.success {
+  border: solid 2px green;
+}
+
+.btn {
+  padding: 0.7em 2em;
+  font-size: 1.5rem;
+  font-size: min(6vw, 1.5rem);
+  background-color: rgba(var(--text), 0.1);
+  border: 1px solid rgba(var(--text), 0.5);
+  color: rgb(var(--text));
+  border-radius: 0.5em;
+  transition: 500ms;
+}
+.btn:hover {
+  background-color: rgba(var(--text), 0.5);
+  border: 1px solid rgba(var(--text));
+  color: rgb(var(--beige));
+  letter-spacing: 0.002em;
+  transform: scale(1.05);
+}
+
+/* ---------------------------- LOADING ANIMATION --------------------------- */
+.loader {
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  background-color: rgb(var(--beige));
+}
+.loader .dot {
+  width: 1em;
+  height: 1em;
+  background-color: rgb(var(--text));
+  border-radius: 100vh; /* make round */
+  transform: translateY(50%) scale(1);
+  box-shadow: 3px 5px 6px rgba(var(--text), 0.5);
+  animation: loader 1s linear infinite;
+}
+.loader .dot:nth-child(2) {
+  animation-delay: 200ms;
+}
+.loader .dot:nth-child(3) {
+  animation-delay: 400ms;
+}
+.loader .dot:nth-child(4) {
+  animation-delay: 600ms;
+}
+.loader .loaded {
+  background-color: rgb(var(--green));
+}
+
+/* -------------------------------- MAIN VIEW ------------------------------- */
+.render-container canvas {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.theme {
+  position: fixed;
+  z-index: 2;
+  right: 0.5em;
+  top: 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.3em;
+  font-size: 1.2rem;
+}
+.theme #night-switch {
+  position: relative;
+  width: 2.2em;
+  height: 1.2em;
+  background-color: rgb(var(--green));
+  border-radius: 2em; /* to be round */
+}
+.theme #night-switch::after {
+  content: "";
+  position: absolute;
+  top: 0.2em;
+  left: 0.2em;
+  width: 0.8em;
+  height: 0.8em;
+  background-color: rgb(var(--text));
+  border-radius: 2em;
+  transition: transform 200ms ease-in-out;
+}
+.theme.night #night-switch::after {
+  transform: translate(1em);
+}
+
+footer {
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hint {
+  font-size: 1.5rem;
+}
+.hint button {
+  width: 1.4em;
+  height: 1.4em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(var(--text));
+  background-color: rgb(var(--beige));
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border-radius: 50%;
+  box-shadow: 2px 2px 3px rgba(30, 30, 30, 0.5);
+}
+
+.socials {
+  display: flex;
+  gap: 0.5em;
+  color: rgb(var(--text));
+  font-size: 1.5rem;
+}
+.socials > * {
+  transition: transform 200ms ease-in-out;
+}
+.socials > *:hover {
+  transform: scale(1.15);
+}
+
+.cc {
+  font-size: min(4vw, 1rem);
+  color: rgb(var(--text));
+  display: flex;
+}
+.cc p {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.fade-out { /* for mobile color on the side to show movement possibilities */
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  width: 10vw;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  pointer-events: none;
+}
+.fade-out.left {
+  left: 0;
+  background: linear-gradient(90deg, rgba(var(--beige), 0.8) 0%, rgba(var(--beige), 0) 100%);
+}
+.fade-out.right {
+  right: 0;
+  background: linear-gradient(-90deg, rgba(var(--beige), 0.8) 0%, rgba(var(--beige), 0) 100%);
+}
+
+/* ------------------------------ MOBILE ALERT ------------------------------ */
+.mobile-alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  max-width: 750px;
+  height: 100vh;
+  height: 100dvh;
+  max-height: 32rem;
+  text-align: center;
+  padding: 0 1em;
+}
+.mobile-alert strong {
+  text-decoration: underline;
+}
+
+/* --------------------------------- CONTACT -------------------------------- */
+#contact .h1 {
+  text-align: center;
+}
+
+.contact {
+  display: grid;
+  gap: 1em;
+  width: 35rem;
+  max-width: 95vw;
+  max-height: 80vh;
+  margin: 3vh;
+  padding: 2em 1em;
+  color: rgb(var(--text));
+  background-color: rgb(var(--beige));
+  border: 1px solid rgba(var(--text), 0.5);
+  border-radius: 0.5em;
+}
+.contact .space {
+  width: 80%;
+  margin: 0em auto 3em;
+  order: 0;
+}
+.contact .space::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: dashed 2px rgb(var(--text));
+}
+.contact > * {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  row-gap: 0.8em;
+}
+.contact a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* --------------------------------- ABOUT ME -------------------------------- */
+#aboutme .h1 {
+  text-align: center;
+}
+
+.aboutme {
+  display: grid;
+  gap: 1em;
+  width: 50rem;
+  max-width: 95vw;
+  max-height: 80vh;
+  margin: 3vh;
+  padding: 2em 1em;
+  color: rgb(var(--text));
+  background-color: rgb(var(--beige));
+  border: 1px solid rgba(var(--text), 0.5);
+  border-radius: 0.5em;
+  text-align: left;;
+}
+.aboutme .space {
+  width: 80%;
+  margin: 0em auto 3em;
+  order: 0;
+}
+.aboutme .space::after {
+  content: "";
+  display: block;
+  width: 100%;
+  border-bottom: dashed 2px rgb(var(--text));
+}
+.aboutme > * {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  row-gap: 0.8em;
+}
+.aboutme a {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.aboutme .h3 {
+  font-size: 1.5rem;
+}
+
+/* -------------------------------- CAROUSSEL -------------------------------- */
+.projects-content {
+  width: 98%;
+  max-height: 100vh;
+  max-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5vh;
+  text-align: center;
+}
+
+.caroussel {
+  position: relative;
+  width: 100%;
+  max-height: 80vh;
+  max-height: 80dvh;
+  max-width: 128vh;
+  margin: 4rem 0 7rem;
+  aspect-ratio: 16/10;
+  display: flex;
+  border-radius: 0.5em;
+}
+
+.caroussel-content {
+  color: rgb(var(--text));
+}
+.caroussel-content > div > * {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.caroussel-content .bg {
+  overflow: hidden;
+  border-radius: 0.5em;
+}
+.caroussel-content .bg > * {
+  width: 100%;
+  transition: transform 500ms ease-in-out;
+}
+.caroussel-content .text {
+  height: calc(100% + 10rem);
+  margin-top: -4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.caroussel-content .text > * {
+  max-height: 3em;
+}
+.caroussel-content .subtitle {
+  font-size: 3rem;
+  font-size: min(8vw, 3rem);
+  margin-bottom: 0rem;
+}
+
+.caroussel-content .p {
+  font-size: 1.5rem;
+  margin: 5%;
+  margin-top: 0rem;
+}
+.caroussel-content > .hidden-slide {
+  animation: hide-slide 500ms forwards;
+}
+.caroussel-content > .active {
+  animation: display-slide 500ms forwards;
+}
+
+/* NAVIGATION */
+.controls {
+  color: white;
+  position: absolute;
+  bottom: 1.5em;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1em;
+  font-size: 1.5rem;
+}
+.controls button {
+  text-shadow: 3px 3px 4px rgba(30, 30, 30, 0.6);
+  transition: 500ms;
+}
+.controls button:hover {
+  transform: scale(1.1);
+}
+
+.auto > * {
+  display: none;
+}
+
+.auto[data-state=play] > #pause {
+  display: flex;
+}
+
+.auto[data-state=pause] > #play {
+  display: flex;
+}
+
+.caroussel:has(.active .black) { /* has not well supported but not so important styling so not that big deal */ }
+.caroussel:has(.active .black) .progress .dot {
+  border: 0.15em solid #1e1e1e;
+}
+.caroussel:has(.active .black) .progress .active {
+  background-color: #1e1e1e;
+}
+.caroussel:has(.active .black) .controls {
+  color: #1e1e1e;
+}
+.caroussel:has(.active .black) .controls button {
+  text-shadow: 1px 1px 4px rgba(239, 239, 239, 0.4);
+}
+
+.progress {
+  position: absolute;
+  bottom: 0.2em;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  gap: 1em;
+}
+.progress .dot {
+  font-size: 0.8rem;
+  cursor: pointer;
+  border-radius: 100vh;
+  width: 1em;
+  height: 1em;
+  border: 0.15em solid #efefef;
+}
+.progress .active {
+  background-color: #efefef;
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   DESKTOP                                  */
+/* -------------------------------------------------------------------------- */
+@media screen and (min-aspect-ratio: 1) { /* since the caroussel has fix aspect ration with video, displaying should be depending on aspect ratio */
+  .fade-out {
+    display: none;
+  }
+  #card-projects {
+    grid-template-rows: 1fr 3.5fr;
+  }
+  .projects-content {
+    width: 95%;
+  }
+  .caroussel {
+    margin: 0;
+  }
+  .caroussel:hover:not([auto-hover]) .caroussel-content video, .caroussel:hover:not([auto-hover]) .caroussel-content img {
+    transform: scale(1.2);
+    filter: blur(7px);
+  }
+  .caroussel:hover:not([auto-hover]) .caroussel-content .text {
+    opacity: 1;
+  }
+  .caroussel[auto-hover] .caroussel-content video, .caroussel[auto-hover] .caroussel-content img {
+    filter: blur(5px);
+  }
+  .caroussel[auto-hover] .caroussel-content .text {
+    opacity: 1;
+  }
+  .caroussel-content .text {
+    height: 100%;
+    margin-top: 0;
+    padding-bottom: 2em;
+    justify-content: center;
+    gap: 10vh;
+    color: #efefef;
+    background-color: rgba(30, 30, 30, 0.4);
+    border-radius: 0.5em;
+    filter: drop-shadow(5px 5px 5px #1e1e1e);
+    opacity: 0;
+    transition: opacity 500ms ease-in-out;
+  }
+  .caroussel-content .text.black-txt {
+    background-color: rgba(239, 239, 239, 0.4);
+    filter: drop-shadow(5px 5px 5px rgba(239, 239, 239, 0.6));
+  }
+  .caroussel-content .btn {
+    color: #efefef;
+    background-color: rgba(239, 239, 239, 0.2);
+    border: 1px solid rgba(239, 239, 239, 0.4);
+  }
+  .caroussel-content .btn.black {
+    background-color: rgba(30, 30, 30, 0.5);
+    border-color: rgba(30, 30, 30, 0.7);
+  }
+  .caroussel-content .btn:hover {
+    color: #1e1e1e;
+    background-color: rgba(239, 239, 239, 0.5);
+    border: 1px solid #1e1e1e;
+  }
+  .subtitle.black {
+    color: #1e1e1e;
+  }
+}
+/* -------------------------------------------------------------------------- */
+/*                                  ANIMATION                                 */
+/* -------------------------------------------------------------------------- */
+@keyframes loader {
+  0% {
+    transform: translateY(50%) scale(1);
+  }
+  50% {
+    transform: translateY(-50%) scale(1.5);
+  }
+  100% {
+    transform: translateY(50%) scale(1);
+  }
+}
+/* CAROUSSEL ANNIMATION */
+@keyframes hide-slide {
+  0% {
+    opacity: 1;
+    display: block;
+  }
+  1% {
+    opacity: 1;
+    display: block;
+  }
+  100% {
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    display: none;
+  }
+}
+@keyframes display-slide {
+  0% {
+    opacity: 0;
+    display: none;
+  }
+  1% {
+    opacity: 0;
+    display: block;
+  }
+  100% {
+    opacity: 1;
+    display: block;
+  }
+}/*# sourceMappingURL=style.css.map */
