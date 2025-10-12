@@ -47,13 +47,13 @@ export default class Loader { // load every assets for the scene then initialize
 
         video.play()
         .then(() => playVideo(this)) // play the video when loaded
-        .catch(error => { // catch any errors because one can appen randomly but dosen't matter so filter it -- https://developer.chrome.com/blog/play-request-was-interrupted/)
-            playVideo(this); // try laying video regardless of the error
+        .catch(error => { 
+            playVideo(this); 
             const errorTxt = String(error);
             if (errorTxt.includes("https://goo.gl/LdLk22")) return;
-            console.error(error); // when the error isn't recognized log it
+            console.error(error); 
         });
-        function playVideo(that) { // that allow to use the real this from the class (this inside function won't work)
+        function playVideo(that) { 
             // video html to three texture
             const videoTexture = new THREE.VideoTexture(video);
             videoTexture.encoding = THREE.sRGBEncoding;
@@ -80,11 +80,11 @@ export default class Loader { // load every assets for the scene then initialize
         const audio = new Audio(asset.path);
         this.oneLoaded(asset.name, {
             audio,
-            src: asset.path // keep src to recreate audio when plaid so we can play it right after
+            src: asset.path 
         });
     }
 
-    oneLoaded = (name, file) => { // called every time somethings load -- check if everything loaded to continue or just wait
+    oneLoaded = (name, file) => { 
         this.items[name] = file;
         this.loaded++;
         if (this.loaded !== this.queue) return;
