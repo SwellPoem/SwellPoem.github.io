@@ -54,7 +54,7 @@ button {
 /*                                   GENERAL                                  */
 /* -------------------------------------------------------------------------- */
 html {
-  background-color: rgb(var(--white)); /* on iphone withe notch, landscape view dosen't take the whole width to avoid cropping important content, so to make it a bit more natural, apply the same color as ground to html so the white space are less visible */
+  background-color: rgb(var(--white)); /* on iphone with notch, landscape view dosen't take the whole width to avoid cropping important content, so to make it a bit more natural, apply the same color as ground to html so the white space are less visible */
 }
 
 body {
@@ -429,7 +429,7 @@ footer {
   font-size: 1.5rem;
 }
 
-/* -------------------------------- CAROUSSEL -------------------------------- */
+/* -------------------------------- CAROUSEL -------------------------------- */
 .projects-content {
   width: 98%;
   max-height: 100vh;
@@ -529,7 +529,7 @@ footer {
   display: flex;
 }
 
-.caroussel:has(.active .black) { /* has not well supported but not so important styling so not that big deal */ }
+.caroussel:has(.active .black) {  }
 .caroussel:has(.active .black) .progress .dot {
   border: 0.15em solid #1e1e1e;
 }
@@ -671,4 +671,48 @@ footer {
     opacity: 1;
     display: block;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+
+/* -------------------------------------------------- */
+/*                 WELCOME SCREEN                     */
+/*----------------------------------------------------*/
+.welcome-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(190, 180, 170, 0.95);  /* beige*/
+  color: rgba(10, 10, 10, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 2000;
+}
+
+.welcome-screen h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.welcome-screen p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.welcome-screen button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #ff6238;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.welcome-screen button:hover {
+  background-color: #e64a19;
+}
