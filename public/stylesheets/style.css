@@ -54,7 +54,7 @@ button {
 /*                                   GENERAL                                  */
 /* -------------------------------------------------------------------------- */
 html {
-  background-color: rgb(var(--white)); /* on iphone with notch, landscape view dosen't take the whole width to avoid cropping important content, so to make it a bit more natural, apply the same color as ground to html so the white space are less visible */
+  background-color: rgb(var(--white)); /* on iphone withe notch, landscape view dosen't take the whole width to avoid cropping important content, so to make it a bit more natural, apply the same color as ground to html so the white space are less visible */
 }
 
 body {
@@ -429,7 +429,7 @@ footer {
   font-size: 1.5rem;
 }
 
-/* -------------------------------- CAROUSEL -------------------------------- */
+/* -------------------------------- CAROUSSEL -------------------------------- */
 .projects-content {
   width: 98%;
   max-height: 100vh;
@@ -529,7 +529,7 @@ footer {
   display: flex;
 }
 
-.caroussel:has(.active .black) {  }
+.caroussel:has(.active .black) { /* has not well supported but not so important styling so not that big deal */ }
 .caroussel:has(.active .black) .progress .dot {
   border: 0.15em solid #1e1e1e;
 }
@@ -671,19 +671,17 @@ footer {
     opacity: 1;
     display: block;
   }
-}
+}/*# sourceMappingURL=style.css.map */
 
 
-/* -------------------------------------------------- */
-/*                 WELCOME SCREEN                     */
-/*----------------------------------------------------*/
+/* ----------------- Welcome screen ----------------- */
 .welcome-screen {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(190, 180, 170, 0.95);  /* beige*/
+  background-color: rgba(190, 180, 170, 0.95);
   color: rgba(10, 10, 10, 1);
   display: flex;
   flex-direction: column;
@@ -715,4 +713,48 @@ footer {
 
 .welcome-screen button:hover {
   background-color: #e64a19;
+}
+
+
+/* --------------------------------- ABOUT ME -------------------------------- */
+
+#aboutme .h1 {
+  text-align: center;
+}
+
+.aboutme {
+  width: 50rem;
+  max-width: 95vw;
+  max-height: 80vh;
+  margin: 3vh auto;
+  padding: 2em 1em;
+  color: rgb(var(--text));
+  background-color: rgb(var(--beige));
+  border: 1px solid rgba(var(--text), 0.5);
+  border-radius: 0.5em;
+  text-align: left;
+  overflow: auto;
+}
+
+.aboutme img {
+  float: left;
+  width: 110px;
+  height: 110px;
+  border-radius: 20%;
+  shape-outside: circle();
+  -webkit-shape-outside: circle();
+  object-fit: cover;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+.aboutme .h3 {
+  font-size: 1.4rem;
+  text-align: justify;
+  line-height: 1;
+}
+
+.aboutme a {
+  text-decoration: underline;
+  cursor: pointer;
 }
