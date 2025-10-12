@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Valentina Piccione ThreeJS portfolio">
+    <title>Valentina Portfolio</title>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+
+    <script type="importmap"> { "imports": { "three": "https://unpkg.com/three@0.149.0/build/three.module.js", 
+        "OrbitControls": "https://unpkg.com/three@0.149.0/examples/jsm/controls/OrbitControls.js",
+        "DRACOLoader": "https://unpkg.com/three@0.149.0/examples/jsm/loaders/DRACOLoader.js",
+        "GLTFLoader": "https://unpkg.com/three@0.149.0/examples/jsm/loaders/GLTFLoader.js",
+        "BufferGeometryUtils": "https://unpkg.com/three@0.149.0/examples/jsm/utils/BufferGeometryUtils.js",
+        "threeInteractive": "https://unpkg.com/three.interactive@1.8.0/build/three.interactive.js"} }
+    </script>
+</head>
+<body>
+    <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+
+    <div class="theme">
+        <i class="fa-regular fa-sun"></i>
+        <button id="night-switch">
+            <span class="hidden">switch day/night theme</span>
+        </button>
+        <i class="fa-regular fa-moon"></i>
+    </div>
+
+    <section class="modal" id="projects">
+        <button class="close-modal">
+            <i class="fa-solid fa-xmark"></i>
+            <span class="hidden">close</span>
+        </button>
+        <div class="projects-content">
+            <h2 class="h1">My projects</h2>
+            <div class="caroussel">
+                <div class="caroussel-content">
+                    <div class="active">  <!-- first project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/first.png" alt="first" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Optimal Motion Planning for Multiple UAVs</h3>
+                            <h3 class="p">Re-implementation and extension of research for utilizing multiple UAV drones to find avalanche victims equipped 
+                                with Avalanche Victim Detectors (ARTVA).
+                                <!-- <br> <br><u>Focus:</u> comparing two distinct operational approaches, centralized system where decision-making is managed by a server with full information on all UAVs,
+                                         and decentralized system where drones operate based on partial information, without continuous communication with a central server or among themselves. -->
+                                <br> <br><u>Programming Language:</u> Matlab
+                            </h3>
+                            <a href="https://github.com/SwellPoem/Optimal_Motion_Planning_Multiple_UAVs" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- second project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/second.png" alt="second" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">HandGesture CNN</h3>
+                            <h3 class="p">Implementation of a custom CNN for embedded hand gesture recognition.
+                                <br> <br><u>Programming Language:</u> Python
+                            </h3>
+                            <a href="https://github.com/SwellPoem/CNN_vision" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- third project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/third.png" alt="third" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Curiosity Rover Motion Planning Simulation</h3>
+                            <h3 class="p">Simulation of navigation, path planning, and localization of a Mars Rover, modeled after NASA’s Curiosity Rover, within a virtual representation of Gale Crater on Mars.
+                                <br> <br><u>Programming Language:</u> Python, Jupiter Notebook
+                            </h3>
+                            <a href="https://github.com/SwellPoem/NN_Diffusion_TS_proj" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- fourth project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/fourth.png" alt="fourth" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Diffusion-TS: interpretable diffusion for general time series generation</h3>
+                            <h3 class="p">Re-implementation of the DIffusion-TS transformer model for time series generation that utilizes denoising diffusion probabilistic models integrated with interpretable seasonal-trend decomposition.
+                                <br> <br><u>Programming Language:</u> Python, Jupiter Notebook
+                            </h3>
+                            <a href="https://github.com/SwellPoem/NN_Diffusion_TS_proj" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- fifth project -->
+                        <div class="bg">
+                            <video src="./public/assets/video/fifth.mp4" muted loop playsinline autoplay>
+                                Your browser doesn't support HTML5 video.
+                            </video>
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Cat vs Toy - interactive 3D animated game</h3>
+                            <h3 class="p">3D representation of a room scene with interactive cat, that follows the user's mouse, and other animated animals performing fixed animations moving in their space.
+                                <br> <br><u>Programming Language:</u> Javascript, HTML
+                            </h3>
+                            <a href="https://github.com/SwellPoem/Cat-vs-Toy_interactive_3D_animated_game" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- sixth project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/sixth.png" alt="fourth" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Adaptation of the Residual Vector of Unknown Dynamics</h3>
+                            <h3 class="p">Implementation a model-based collision detection method for a spatial 3R manipulator, utilizing the residual between expected and actual momentum to detect collisions and adaptively updates robot’s dynamic parameters.
+                                <br> <br><u>Programming Language:</u> Matlab
+                            </h3>
+                            <a href="https://github.com/SwellPoem/Adaptive_Collision_Detection" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- seventh project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/seventh.png" alt="fourth" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Rover Manipulator Analysis: Krapvik Robotic Arm</h3>
+                            <h3 class="p">Study and modeling of the Krapvik robotic arm comprehending setting of MDH parameters, forward and inverse kinematics, dynamics study, trajectory and control implementation for predetermined tasks.
+                                <br> <br><u>Programming Language:</u> Matlab
+                            </h3>
+                            <a href="https://github.com/SwellPoem/Kapvik-Robotic-Arm" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                    <div class="hidden-slide">  <!-- eighth project -->
+                        <div class="bg">
+                            <img src="./public/assets/images/eighth.png" alt="fourth" class="bg-img">
+                        </div>
+                        <div class="text">
+                            <h3 class="subtitle">Multi-Robot Simulator</h3>
+                            <h3 class="p">Implementation of a multi-robot simulator in wich 3 robots can be moved in a space and detect obstacles with the use of a lidar sensor. Integration of sensor and movement in the ambient is performed by ROS Nodes.
+                                <br> <br><u>Programming Language:</u> C++, ROS
+                            </h3>
+                            <a href="https://github.com/SwellPoem/Kapvik-Robotic-Arm" target="_blank" class="btn">Go check it out</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button id="prev" class="nav" onclick="caroussel.changeSlide(-1)">
+                        <i class="fa-solid fa-chevron-left"></i>
+                        <span class="hidden">previous</span>
+                    </button>
+                    <span class="auto" data-state="pause">
+                        <!-- <button id="play" onclick="caroussel.play()">
+                            <i class="fa-solid fa-play"></i>
+                            <span class="hidden">activate auto play</span>
+                        </button>
+                        <button id="pause" onclick="caroussel.pause()">
+                            <i class="fa-solid fa-pause"></i>
+                            <span class="hidden">stop auto play</span>
+                        </button> -->
+                    </span>
+                    <button id="next" class="nav" onclick="caroussel.changeSlide(1)">
+                        <i class="fa-solid fa-chevron-right"></i>
+                        <span class="hidden">next</span>
+                    </button>
+                </div>
+                <div class="progress">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="modal" id="contact">
+        <button class="close-modal">
+            <i class="fa-solid fa-xmark"></i>
+            <span class="hidden">close</span>
+        </button>
+        <div>
+            <h2 class="h1">Get in touch!</h2>
+            <div class="contact">
+                <p class="h3"><i class="fa-solid fa-envelope"></i> &nbsp; By mail: &nbsp; <a href="mailto:valentina.piccione@outlook.com">valentina.piccione@outlook.com</a></p>
+                
+                <p class="h3"><i class="fa-brands fa-linkedin"></i> &nbsp; By linkedin: &nbsp; <a href="https://www.linkedin.com/in/valentina-piccione/" target="_blank">Valentina Piccione</a></p>
+            </div>
+        </div>
+    </section>
+    <section class="modal" id="mobile-alert">
+        <div class="mobile-alert">
+            <h2 class="h1 warning">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <span class="hidden">Alert</span>
+            </h2>
+            <h3 class="h1 smaller">
+                Suboptimal experience warning!
+            </h3>
+            <h4 class="h3">
+                Optimal viewing experience on mobile devices is in <strong>portrait orientation</strong>
+            </h4>
+            <p>
+                <i class="fa-solid fa-lightbulb"></i>
+                For the ultimate experience, consider switching to a computer
+            </p>
+            <button class="btn" onclick="closeModal()">Got it !</button>
+        </div>
+    </section>
+
+    <section class="modal" id="aboutme">
+        <button class="close-modal">
+            <i class="fa-solid fa-xmark"></i>
+            <span class="hidden">close</span>
+        </button>
+        <div>
+            <h2 class="h1">About Me</h2>
+            <div class="aboutme">
+                <p class="h3"> Ciao! I’m Valentina from Rome — an AI engineer with a passion for technology, robots, and space systems. <br>I studied AI & Robotics and now spend my days designing and training neural networks to see and understand the world through computer vision and time-series analysis. I love creating intelligent systems that make a difference in how we understand and solve real-world problems. <br><br> When I’m not swimming laps 🏊🏻‍♀️ or playing the sax 🎷, you’ll probably find me coding with a cat on my keyboard or taking on a new challenge — in code 💻 or in a videogame 🎮. <br><br>I’m endlessly curious about robots, automation, and space — basically, anything that makes the future feel a little closer. </p>
+            </div>
+        </div>
+    </section>
+
+    <div class="fade-out left"></div>
+    <div class="fade-out right"></div>
+
+    <div class="render-container">
+        <canvas></canvas>
+    </div>
+    
+    <footer>
+        <div class="hint">
+            <button onclick="world.hint()">?</button>
+        </div>
+        <div class="cc">
+            <p>&copy; 2024 -&nbsp;</p>
+            <h1>Valentina Piccione</h1>
+        </div>
+        <ul class="socials">
+            <li><a href="https://github.com/SwellPoem" target="_blank">
+                <i class="fa-brands fa-github"></i>
+                <span class="hidden">Github</span>
+            </a></li>
+            <li><a href="https://codepen.io/swellpoem" target="_blank">
+                <i class="fa-brands fa-codepen"></i>
+                <span class="hidden">Codepen</span>
+            </a></li>
+        </ul>
+    </footer>
+
+    <div class="popup"></div>
+    <script src="./script/index.js" type="module"></script>
+</body>
+</html>
