@@ -63,4 +63,12 @@ function modalClick(e) { // listener function for click -- check if click is not
     if (activeModal != e.target && e.target.parentNode.className != "close-modal") return; // if click outside of content or in the close btn continue -- close btn has an element inside so the click register on it -> go back to parent
     closeModal();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    // event listener for the "Enter" button on the welcome screen
+    document.getElementById("enter-room").addEventListener("click", () => {
+        document.getElementById("welcome-screen").style.display = "none";
+    });
+});
+
 export const controls = init3D(); // create 3D world and export controls to be used in resize.js
