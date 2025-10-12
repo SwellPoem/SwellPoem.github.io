@@ -1,6 +1,6 @@
-import "../script/utils/utilities.js"; // add general function like toRadian
-import init3D from "../script/utils/init3D.js";
-import { Caroussel, Form } from "../script/dom.js";
+import "./script/utils/utilities.js"; // add general function like toRadian
+import init3D from "./script/utils/init3D.js";
+import { Caroussel, Form } from "./script/dom.js";
 
 window.colors = {
     day: {
