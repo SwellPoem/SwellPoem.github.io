@@ -3,7 +3,7 @@ import * as THREE from "three";
 window.THREE = THREE; // Allow three.js to be accessible everywhere
 import { OrbitControls } from "OrbitControls";
 // HOMEMADE
-import Loader from "../../script/utils/loader.js";
+import Loader from "./script/utils/loader.js";
 
 const canvas = document.querySelector(".render-container > canvas");
 const loadingOverlay = document.querySelector(".loader");
