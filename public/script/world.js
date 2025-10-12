@@ -86,8 +86,6 @@ export default class World { // World is everithing regarding 3D world after ini
             this.Animate("Link3-animation", 6, "reset-after");
             this.Animate("end-eff-animation", 7.5, "reset-after");
         });
-        // this.setInteractions("letter", "mouseover", () => this.Animate("letter-top-anim", 1, "forward"));
-        // this.setInteractions("letter", "mouseout", () => this.Animate("letter-top-anim", 1, "backward"));
 
 
         const texture = new THREE.TextureLoader().load('./assets/images/SW.jpg');
@@ -130,8 +128,8 @@ export default class World { // World is everithing regarding 3D world after ini
         const meshName4 = "letter";
         if (this.room[meshName4]) {
             const material = new THREE.MeshStandardMaterial({map: texture4});
-            material.color.set('gray'); // Change this to adjust the color
-            material.emissive.set('black'); // Change this to adjust the emissive color
+            material.color.set('gray'); 
+            material.emissive.set('black'); 
             this.room[meshName4].material = material;
         } else {
             console.error(`Mesh ${meshName4} not found`);
@@ -140,7 +138,7 @@ export default class World { // World is everithing regarding 3D world after ini
     };
 
     setInteractions = (target, type, action) => { // create interaction for elements
-        if (!this.interactionManager.interactiveObjects.find(interaction => interaction.name == target)) { // if object is not arleady animated add all prior need (add to interaction manager, add hover cursor, add to interaction hint)
+        if (!this.interactionManager.interactiveObjects.find(interaction => interaction.name == target)) { 
             this.interactionManager.add(this.room[target]);
             // hover cursor change
             this.room[target].addEventListener("mouseover", () => document.body.style.cursor = "pointer");
@@ -199,7 +197,7 @@ export default class World { // World is everithing regarding 3D world after ini
     };
 
     Animate = (animation, speed, mode) => { // manage all animation
-        // animation mode: "forward" "backward" "infinite" "both-way" "reset-after" "repeat" (repeat = default so anything unrecognized will repeat)
+        
         if (!animations[animation]) { // if animation not initialized create it
             const clip = this.fullRoom.animations.find(element => element.name === animation);
             animations[animation] = this.mixer.clipAction(clip);
