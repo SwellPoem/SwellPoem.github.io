@@ -90,7 +90,7 @@ export default class World { // World is everithing regarding 3D world after ini
         // this.setInteractions("letter", "mouseout", () => this.Animate("letter-top-anim", 1, "backward"));
 
 
-        const texture = new THREE.TextureLoader().load('./public/assets/images/SW.jpg');
+        const texture = new THREE.TextureLoader().load('./assets/images/SW.jpg');
         texture.wrapS = THREE.RepeatWrapping;
         texture.wrapT = THREE.RepeatWrapping;
         texture.repeat.set(-1, 1);
@@ -101,7 +101,7 @@ export default class World { // World is everithing regarding 3D world after ini
             console.error(`Mesh ${meshName} not found`);
         }
 
-        const texture2 = new THREE.TextureLoader().load('./public/assets/images/AI.jpg');
+        const texture2 = new THREE.TextureLoader().load('./assets/images/AI.jpg');
         texture2.wrapS = THREE.RepeatWrapping;
         texture2.wrapT = THREE.RepeatWrapping;
         texture2.repeat.set(-1, 1);
@@ -112,7 +112,7 @@ export default class World { // World is everithing regarding 3D world after ini
             console.error(`Mesh ${meshName2} not found`);
         }
 
-        const texture3 = new THREE.TextureLoader().load('./public/assets/images/matlab.jpg');
+        const texture3 = new THREE.TextureLoader().load('./assets/images/matlab.jpg');
         texture3.wrapS = THREE.RepeatWrapping;
         texture3.wrapT = THREE.RepeatWrapping;
         texture3.repeat.set(1, -1);
@@ -123,7 +123,7 @@ export default class World { // World is everithing regarding 3D world after ini
             console.error(`Mesh ${meshName3} not found`);
         }
 
-        const texture4 = new THREE.TextureLoader().load('./public/assets/images/CV.jpg');
+        const texture4 = new THREE.TextureLoader().load('./assets/images/CV.jpg');
         texture4.wrapS = THREE.RepeatWrapping;
         texture4.wrapT = THREE.RepeatWrapping;
         texture4.repeat.set(1, -1);
