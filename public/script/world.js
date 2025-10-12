@@ -161,7 +161,7 @@ export default class World { // World is everithing regarding 3D world after ini
         });
     }
 
-    hint = () => { // change color of every interactible elements for 2s then revert back to original
+    hint = () => {
         const hintMaterial = new THREE.MeshStandardMaterial({
             color: 0xFF0000
         });
@@ -169,8 +169,34 @@ export default class World { // World is everithing regarding 3D world after ini
         interactions.forEach(interaction => interaction.object.material = hintMaterial);
         setTimeout(() => {
             interactions.forEach(interaction => interaction.object.material = interaction.originalMaterial);
-        }, 2000);
-    }
+        }, 3000);
+
+        // Ensure the hint message element exists
+        let hintMessage = document.getElementById("hint-message");
+        if (!hintMessage) {
+            hintMessage = document.createElement("div");
+            hintMessage.id = "hint-message";
+            document.body.appendChild(hintMessage);
+        }
+
+        // Display the hint message
+        hintMessage.innerHTML = "Click on the objects highlighted in red to learn more about me, get in touch, explore my projects, or simply have fun!<br>Don't forget to turn the sound on!";
+        hintMessage.style.display = "block";
+        hintMessage.style.position = "absolute";
+        hintMessage.style.top = "50%";
+        hintMessage.style.left = "50%";
+        hintMessage.style.transform = "translate(-50%, -50%)";
+        hintMessage.style.backgroundColor = "rgba(100, 60, 80, 0.7)";
+        hintMessage.style.color = "white";
+        hintMessage.style.padding = "10px";
+        hintMessage.style.borderRadius = "5px";
+        hintMessage.style.textAlign = "center";
+        hintMessage.style.zIndex = "1000";
+
+        setTimeout(() => {
+            hintMessage.style.display = "none";
+        }, 3000);
+    };
 
     Animate = (animation, speed, mode) => { // manage all animation
         // animation mode: "forward" "backward" "infinite" "both-way" "reset-after" "repeat" (repeat = default so anything unrecognized will repeat)
