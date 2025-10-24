@@ -34,9 +34,9 @@ export default class World { // World is everithing regarding 3D world after ini
         // add lights
         const deskLight = this.environment.addSpotLight(this.room["desk_lamp"].position, this.room.Body);
         const bedLight = this.environment.addPointLight(this.room["lamp"].position);
+
         // add Interactions
         this.setInteractions("screen-video", "mousedown", () => openModal("projects"));
-        // this.setInteractions("letter", "mousedown", () => openModal("contact"));
         this.setInteractions("letter-box", "mousedown", () => openModal("contact"));
         this.setInteractions("letter", "mousedown", () => openModal("aboutme"));
 
@@ -86,6 +86,31 @@ export default class World { // World is everithing regarding 3D world after ini
             this.Animate("Link3-animation", 6, "reset-after");
             this.Animate("end-eff-animation", 7.5, "reset-after");
         });
+
+        // Add poster
+        const posterTexture = new THREE.TextureLoader().load('./assets/images/codedex.png');
+        const posterGeometry = new THREE.PlaneGeometry(1.1, 1.1); // Adjust dimensions as needed
+        const posterMaterial = new THREE.MeshStandardMaterial({
+            map: posterTexture,
+            side: THREE.DoubleSide,
+        })
+
+        const posterMesh = new THREE.Mesh(posterGeometry, posterMaterial);
+        posterMesh.position.set(-2.675, 3.1, 3.15);
+        posterMesh.rotation.y = THREE.MathUtils.degToRad(90);
+        scene.add(posterMesh);
+
+        // Add poster2
+        const posterTexture2 = new THREE.TextureLoader().load('./assets/images/codedex_battle.png');
+        const posterGeometry2 = new THREE.PlaneGeometry(0.95, 0.6); // Adjust dimensions as needed
+        const posterMaterial2 = new THREE.MeshStandardMaterial({
+            map: posterTexture2,
+            side: THREE.DoubleSide,
+        });
+        const posterMesh2 = new THREE.Mesh(posterGeometry2, posterMaterial2);
+        posterMesh2.position.set(0.7, 2.6, -2.675);
+        posterMesh2.rotation.y = THREE.MathUtils.degToRad(0);
+        scene.add(posterMesh2);
 
 
         const texture = new THREE.TextureLoader().load('./assets/images/SW.jpg');
