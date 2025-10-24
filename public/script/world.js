@@ -89,7 +89,7 @@ export default class World { // World is everithing regarding 3D world after ini
 
         // Add poster
         const posterTexture = new THREE.TextureLoader().load('./assets/images/codedex.png');
-        const posterGeometry = new THREE.PlaneGeometry(1.1, 1.1); // Adjust dimensions as needed
+        const posterGeometry = new THREE.PlaneGeometry(1.1, 1.1);
         const posterMaterial = new THREE.MeshStandardMaterial({
             map: posterTexture,
             side: THREE.DoubleSide,
@@ -98,11 +98,12 @@ export default class World { // World is everithing regarding 3D world after ini
         const posterMesh = new THREE.Mesh(posterGeometry, posterMaterial);
         posterMesh.position.set(-2.675, 3.1, 3.15);
         posterMesh.rotation.y = THREE.MathUtils.degToRad(90);
+        posterMesh.receiveShadow = true;
         scene.add(posterMesh);
 
         // Add poster2
         const posterTexture2 = new THREE.TextureLoader().load('./assets/images/codedex_battle.png');
-        const posterGeometry2 = new THREE.PlaneGeometry(0.95, 0.6); // Adjust dimensions as needed
+        const posterGeometry2 = new THREE.PlaneGeometry(0.95, 0.6);
         const posterMaterial2 = new THREE.MeshStandardMaterial({
             map: posterTexture2,
             side: THREE.DoubleSide,
@@ -110,6 +111,7 @@ export default class World { // World is everithing regarding 3D world after ini
         const posterMesh2 = new THREE.Mesh(posterGeometry2, posterMaterial2);
         posterMesh2.position.set(0.7, 2.6, -2.675);
         posterMesh2.rotation.y = THREE.MathUtils.degToRad(0);
+        posterMesh2.receiveShadow = true;
         scene.add(posterMesh2);
 
 
